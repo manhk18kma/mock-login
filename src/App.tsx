@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import LoginPage from "./components/LoginPage";
+import LogoutPage from "./components/LogoutPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Home page - hiển thị thông tin các route */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* Route cho login */}
+        <Route path="/sso/login" element={<LoginPage />} />
+
+        {/* Route cho logout */}
+        <Route path="/sso/logout" element={<LogoutPage />} />
+
+        {/* Fallback cho các route không tồn tại */}
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
