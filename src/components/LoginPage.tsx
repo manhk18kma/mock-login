@@ -39,8 +39,7 @@ function LoginPage() {
 
     // Giả lập loading
     setTimeout(() => {
-      const ticket =
-        "ST-272-4-ujGCiVQsDvmHuRbpO6D9X8bWQvtn-cds-app-10211202001"; // fixed test ticket
+      const ticket = values.username; // Sử dụng username làm ticket
 
       console.log("🎫 Mock login successful:", {
         username: values.username,
@@ -83,15 +82,15 @@ function LoginPage() {
         </div>
 
         <Form
-          initialValues={{ username: "admin", password: "123456" }}
+          initialValues={{ username: "", password: "123456" }}
           onFinish={handleLogin}
           size="large"
         >
           <Form.Item
             name="username"
-            rules={[{ required: true, message: "Nhập username!" }]}
+            rules={[{ required: true, message: "Nhập ticket!" }]}
           >
-            <Input prefix={<UserOutlined />} placeholder="Username" />
+            <Input prefix={<UserOutlined />} placeholder="Ticket" />
           </Form.Item>
 
           <Form.Item
