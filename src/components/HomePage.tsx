@@ -6,8 +6,6 @@ import { LoginOutlined, LogoutOutlined, LinkOutlined } from "@ant-design/icons";
 const { Title, Text, Paragraph } = Typography;
 
 function HomePage() {
-  const currentHost = window.location.origin;
-
   return (
     <div
       style={{
@@ -32,7 +30,7 @@ function HomePage() {
         <Space direction="vertical" style={{ width: "100%" }} size="large">
           <Card type="inner" title="Login Endpoint" extra={<LoginOutlined />}>
             <Paragraph>
-              <Text strong>URL:</Text> {currentHost}/sso/login
+              <Text strong>URL:</Text> /sso/login
             </Paragraph>
             <Paragraph>
               <Text strong>Parameters:</Text>
@@ -49,8 +47,7 @@ function HomePage() {
               <Text strong>Example:</Text>
               <br />
               <Text code>
-                {currentHost}
-                /sso/login?service=http://localhost:5173&appCode=NET_VISION
+                /sso/login?service=[service-url]&appCode=NET_VISION
               </Text>
             </Paragraph>
             <Button
@@ -58,7 +55,7 @@ function HomePage() {
               icon={<LoginOutlined />}
               onClick={() =>
                 (window.location.href =
-                  "/sso/login?service=http://localhost:5173&appCode=NET_VISION")
+                  "/sso/login?service=[service-url]&appCode=NET_VISION")
               }
             >
               Test Login
@@ -67,7 +64,7 @@ function HomePage() {
 
           <Card type="inner" title="Logout Endpoint" extra={<LogoutOutlined />}>
             <Paragraph>
-              <Text strong>URL:</Text> {currentHost}/sso/logout
+              <Text strong>URL:</Text> /sso/logout
             </Paragraph>
             <Paragraph>
               <Text strong>Parameters:</Text>
@@ -87,8 +84,7 @@ function HomePage() {
               <Text strong>Example:</Text>
               <br />
               <Text code>
-                {currentHost}
-                /sso/logout?ticket=ST-123456&service=http://localhost:5173&appCode=NET_VISION
+                /sso/logout?ticket=ST-123456&service=[service-url]&appCode=NET_VISION
               </Text>
             </Paragraph>
             <Button
@@ -96,7 +92,7 @@ function HomePage() {
               icon={<LogoutOutlined />}
               onClick={() =>
                 (window.location.href =
-                  "/sso/logout?ticket=ST-123456&service=http://localhost:5173&appCode=NET_VISION")
+                  "/sso/logout?ticket=ST-123456&service=[service-url]&appCode=NET_VISION")
               }
             >
               Test Logout
@@ -118,7 +114,7 @@ function HomePage() {
           <Text strong>Login Mock:</Text>
           <ul>
             <li>Accepts any username/password (default: admin/123456)</li>
-            <li>Generates dynamic ticket: ST-{Date.now()}</li>
+            <li>Generates dynamic ticket: ST-&#123;Date.now()&#125;</li>
             <li>Redirects to service URL with ticket parameter</li>
           </ul>
 

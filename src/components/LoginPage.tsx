@@ -10,20 +10,14 @@ function LoginPage() {
   const [appCode, setAppCode] = useState("");
 
   useEffect(() => {
-    // Lấy parameters từ URL
     const urlParams = new URLSearchParams(window.location.search);
     let service = urlParams.get("service") || "";
     const app = urlParams.get("appCode") || "NET_VISION";
-
-    // Xóa dấu '/' cuối nếu có
     if (service.endsWith("/")) {
       service = service.slice(0, -1);
     }
-
     setServiceUrl(service);
     setAppCode(app);
-
-    console.log("🎭 Mock VSA Login loaded:", { service, appCode: app });
   }, []);
 
   const handleLogin = async (values: {
@@ -34,29 +28,15 @@ function LoginPage() {
       message.error("Lỗi: Không có service URL!");
       return;
     }
-
     setLoading(true);
-
-    // Giả lập loading
     setTimeout(() => {
-      const ticket = values.username; // Sử dụng username làm ticket
-
-      console.log("🎫 Mock login successful:", {
-        username: values.username,
-        ticket,
-        serviceUrl,
-      });
-
+      const ticket = values.username;
       message.success("Đăng nhập thành công! Chuyển hướng...");
-
-      // Redirect về BE với ticket
       setTimeout(() => {
-        // Đảm bảo serviceUrl không có dấu '/' cuối
         const callbackUrl = `${serviceUrl.replace(
           /\/+$/,
           ""
         )}?ticket=${ticket}`;
-        console.log("🔄 Redirecting to:", callbackUrl);
         window.location.href = callbackUrl;
       }, 1000);
     }, 500);
@@ -80,7 +60,6 @@ function LoginPage() {
           </Title>
           <Text type="secondary">Mock Authentication Service</Text>
         </div>
-
         <Form
           initialValues={{ username: "", password: "123456" }}
           onFinish={handleLogin}
@@ -92,14 +71,12 @@ function LoginPage() {
           >
             <Input prefix={<UserOutlined />} placeholder="Ticket" />
           </Form.Item>
-
           <Form.Item
             name="password"
             rules={[{ required: true, message: "Nhập password!" }]}
           >
             <Input.Password prefix={<LockOutlined />} placeholder="Password" />
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"
@@ -111,21 +88,6 @@ function LoginPage() {
             </Button>
           </Form.Item>
         </Form>
-
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "10px",
-            background: "#f9f9f9",
-            borderRadius: "4px",
-            fontSize: "12px",
-          }}
-        >
-          <Text strong>Connection Info:</Text>
-          <div>Service: {serviceUrl || "N/A"}</div>
-          <div>AppCode: {appCode}</div>
-          <div>Mode: Login</div>
-        </div>
       </Card>
     </div>
   );
