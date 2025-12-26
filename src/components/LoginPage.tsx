@@ -61,7 +61,7 @@ function LoginPage() {
           <Text type="secondary">Mock Authentication Service</Text>
         </div>
         <Form
-          initialValues={{ username: "", password: "123456" }}
+          initialValues={{ username: "", password: "" }}
           onFinish={handleLogin}
           size="large"
         >

@@ -44,22 +44,8 @@ function HomePage() {
               </ul>
             </Paragraph>
             <Paragraph>
-              <Text strong>Example:</Text>
-              <br />
-              <Text code>
-                /sso/login?service=[service-url]&appCode=NET_VISION
-              </Text>
+              <Text strong>Usage:</Text> Access via URL with service and appCode parameters
             </Paragraph>
-            <Button
-              type="primary"
-              icon={<LoginOutlined />}
-              onClick={() =>
-                (window.location.href =
-                  "/sso/login?service=[service-url]&appCode=NET_VISION")
-              }
-            >
-              Test Login
-            </Button>
           </Card>
 
           <Card type="inner" title="Logout Endpoint" extra={<LogoutOutlined />}>
@@ -81,22 +67,8 @@ function HomePage() {
               </ul>
             </Paragraph>
             <Paragraph>
-              <Text strong>Example:</Text>
-              <br />
-              <Text code>
-                /sso/logout?ticket=ST-123456&service=[service-url]&appCode=NET_VISION
-              </Text>
+              <Text strong>Usage:</Text> Access via URL with ticket, service and appCode parameters
             </Paragraph>
-            <Button
-              type="default"
-              icon={<LogoutOutlined />}
-              onClick={() =>
-                (window.location.href =
-                  "/sso/logout?ticket=ST-123456&service=[service-url]&appCode=NET_VISION")
-              }
-            >
-              Test Logout
-            </Button>
           </Card>
         </Space>
 
@@ -111,19 +83,9 @@ function HomePage() {
             borderRadius: "4px",
           }}
         >
-          <Text strong>Login Mock:</Text>
-          <ul>
-            <li>Accepts any username/password (default: admin/123456)</li>
-            <li>Generates dynamic ticket: ST-&#123;Date.now()&#125;</li>
-            <li>Redirects to service URL with ticket parameter</li>
-          </ul>
-
-          <Text strong>Logout Mock:</Text>
-          <ul>
-            <li>Simulates Hazelcast data removal</li>
-            <li>Handles partner token (PT) special processing</li>
-            <li>Redirects back to service URL after logout</li>
-          </ul>
+          <Paragraph>
+            <Text strong>Mock Authentication Service</Text> - Provides login and logout endpoints for development testing.
+          </Paragraph>
         </div>
       </Card>
     </div>
