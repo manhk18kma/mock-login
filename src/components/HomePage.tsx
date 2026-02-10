@@ -1,11 +1,23 @@
 // src/components/HomePage.tsx
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Typography, Button, Space, Divider } from "antd";
 import { LoginOutlined, LogoutOutlined, LinkOutlined } from "@ant-design/icons";
 
 const { Title, Text, Paragraph } = Typography;
 
 function HomePage() {
+  useEffect(() => {
+    // Nếu có service parameter, tự động redirect về /sso/login
+    const urlParams = new URLSearchParams(window.location.search);
+    const service = urlParams.get("service");
+    const appCode = urlParams.get("appCode") || "NET_VISION";
+
+    if (service) {
+      const loginUrl = `/sso/login?service=${encodeURIComponent(service)}&appCode=${encodeURIComponent(appCode)}`;
+      window.location.href = loginUrl;
+    }
+  }, []);
+
   return (
     <div
       style={{
