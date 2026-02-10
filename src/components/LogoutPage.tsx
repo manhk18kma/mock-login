@@ -32,7 +32,9 @@ function LogoutPage() {
       setLogoutComplete(true);
       if (service) {
         setTimeout(() => {
-          window.location.href = service;
+          // Redirect về trang login với service parameter
+          const loginUrl = `/sso/login?service=${encodeURIComponent(service)}&appCode=${encodeURIComponent(appCode)}`;
+          window.location.href = loginUrl;
         }, 500);
       }
     }, 1000);
@@ -80,7 +82,7 @@ function LogoutPage() {
           title="Đăng xuất thành công!"
           subTitle={
             serviceUrl
-              ? "Đang chuyển hướng về ứng dụng..."
+              ? "Đang chuyển hướng về trang đăng nhập..."
               : "Bạn đã đăng xuất khỏi hệ thống."
           }
         />
