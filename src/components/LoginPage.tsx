@@ -8,7 +8,7 @@ function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [serviceUrl, setServiceUrl] = useState("");
   const [appCode, setAppCode] = useState("");
-
+//test commit
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     let service = urlParams.get("service") || "";
